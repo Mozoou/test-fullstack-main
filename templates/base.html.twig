@@ -10,6 +10,7 @@
         {% block stylesheets %}{% endblock %}
 
         {% block javascripts %}{% endblock %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
     </head>
     <body>
         <nav>
