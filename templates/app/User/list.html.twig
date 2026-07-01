@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table>
+        <thead>
+            <tr>
+                <td>{{ 'entity.User.firstName'|trans }}</td>
+                <td>{{ 'entity.User.lastName'|trans }}</td>
+                <td>{{ 'entity.User.matricule'|trans }}</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.matricule }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

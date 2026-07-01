@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        {{ readmeContent|markdown_to_html }}
+    </div>
+{% endblock %}

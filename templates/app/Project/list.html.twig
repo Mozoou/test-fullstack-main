@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table>
+        <thead>
+            <tr>
+                <td>{{ 'entity.Project.name'|trans }}</td>
+                <td>{{ 'entity.Project.address'|trans }}</td>
+                <td>{{ 'entity.Project.dateStart'|trans }}</td>
+                <td>{{ 'entity.Project.dateEnd'|trans }}</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td>{{ project.name }}</td>
+                    <td>{{ project.address }}</td>
+                    <td>{{ project.dateStart|date }}</td>
+                    <td>{{ project.dateEnd|date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

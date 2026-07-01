@@ -1,0 +1,15 @@
+entity:
+  Clocking:
+    clockingProject: "Chantier"
+    clockingUser: "Collaborateur"
+    date: "Date de fin"
+    duration: "Durée"
+  Project:
+    address: "Adresse"
+    dateEnd: "Date de clôture"
+    dateStart: "Date d'ouverture"
+    name: "Nom"
+  User:
+    firstName: "Prénom"
+    lastName: "Nom"
+    matricule: "Matricule"

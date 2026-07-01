@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        <a href="{{ path('app_Clocking_create') }}">Créer</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>{{ 'entity.Clocking.date'|trans }}</td>
+                <td>{{ 'entity.Clocking.duration'|trans }}</td>
+                <td>{{ 'entity.Clocking.clockingProject'|trans }}</td>
+                <td>{{ 'entity.Clocking.clockingUser'|trans }}</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for clocking in clockings %}
+                <tr>
+                    <td>{{ clocking.date|date }}</td>
+                    <td>{{ clocking.duration }}</td>
+                    <td>{{ clocking.clockingProject.name }}</td>
+                    <td>{{ clocking.clockingUser.lastName }} {{ clocking.clockingUser.firstName }}</td>
+                    <td>
+                        <a href="{{ path('app_Clocking_delete', {id: clocking.id}) }}">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

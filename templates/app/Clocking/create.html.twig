@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.clockingProject) }}
+    {{ form_row(form.clockingUser) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.duration) }}
+
+    {{ form_end(form) }}
+{% endblock %}
