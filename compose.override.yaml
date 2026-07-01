@@ -1,10 +1,24 @@
-version: '3'
-
 services:
+###> dunglas/symfony-docker ###
+  php:
+    build:
+      target: frankenphp_dev
+    volumes:
+      - ./:/app
+    environment:
+      APP_ENV: dev
+      MAILER_DSN: smtp://mailer:1025
+      XDEBUG_MODE: "${XDEBUG_MODE:-off}"
+    extra_hosts:
+      # Ensures that host.docker.internal is correctly resolved on Linux
+      - host.docker.internal:host-gateway
+    tty: true
+###< dunglas/symfony-docker ###
+
 ###> doctrine/doctrine-bundle ###
   database:
     ports:
-      - "5432"
+      - "3306"
 ###< doctrine/doctrine-bundle ###
 
 ###> symfony/mailer ###
