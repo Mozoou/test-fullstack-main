@@ -1,7 +1,120 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div>
-        {{ readmeContent|markdown_to_html }}
-    </div>
+<div class="max-w-4xl mx-auto px-6 py-12">
+    <article class="readme-content">
+        {{ readmeContent|markdown }}
+    </article>
+</div>
+
+<style>
+.readme-content {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.readme-content h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 1.5em 0 0.5em 0;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5em;
+    color: #1f2937;
+}
+
+.readme-content h2 {
+    font-size: 1.875em;
+    font-weight: bold;
+    margin: 1.5em 0 0.5em 0;
+    color: #4f46e5;
+}
+
+.readme-content h3 {
+    font-size: 1.25em;
+    font-weight: bold;
+    margin: 1em 0 0.5em 0;
+    color: #6366f1;
+}
+
+.readme-content p {
+    margin: 1em 0;
+    line-height: 1.8;
+}
+
+.readme-content a {
+    color: #4f46e5;
+    text-decoration: underline;
+}
+
+.readme-content a:hover {
+    color: #4338ca;
+}
+
+.readme-content code {
+    background: #f3f4f6;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-family: "Courier New", monospace;
+    color: #dc2626;
+    font-size: 0.9em;
+}
+
+.readme-content pre {
+    background: #1f2937;
+    color: #f3f4f6;
+    padding: 1.5em;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5em 0;
+    border: 1px solid #374151;
+}
+
+.readme-content pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+}
+
+.readme-content ul, .readme-content ol {
+    margin: 1.5em 0;
+    margin-left: 2em;
+}
+
+.readme-content li {
+    margin: 0.5em 0;
+}
+
+.readme-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.5em 0;
+}
+
+.readme-content th, .readme-content td {
+    border: 1px solid #d1d5db;
+    padding: 0.75em;
+    text-align: left;
+}
+
+.readme-content th {
+    background: #f0f4ff;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.readme-content blockquote {
+    border-left: 4px solid #4f46e5;
+    padding-left: 1em;
+    margin: 1.5em 0;
+    font-style: italic;
+    color: #4b5563;
+}
+
+.readme-content strong {
+    font-weight: bold;
+    color: #1f2937;
+}
+</style>
 {% endblock %}

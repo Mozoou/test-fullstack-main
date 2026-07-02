@@ -1,24 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <table>
-        <thead>
-            <tr>
-                <td>{{ 'entity.Project.name'|trans }}</td>
-                <td>{{ 'entity.Project.address'|trans }}</td>
-                <td>{{ 'entity.Project.dateStart'|trans }}</td>
-                <td>{{ 'entity.Project.dateEnd'|trans }}</td>
-            </tr>
-        </thead>
-        <tbody>
-            {% for project in projects %}
+<div class="mx-auto max-w-6xl px-6 py-10">
+
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold tracking-tight text-gray-900">
+            {{ 'entity.Project.list'|trans({}, 'messages')|default('Projets') }}
+        </h1>
+    </div>
+
+    <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
                 <tr>
-                    <td>{{ project.name }}</td>
-                    <td>{{ project.address }}</td>
-                    <td>{{ project.dateStart|date }}</td>
-                    <td>{{ project.dateEnd|date }}</td>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        {{ 'entity.Project.name'|trans }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        {{ 'entity.Project.address'|trans }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        {{ 'entity.Project.dateStart'|trans }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        {{ 'entity.Project.dateEnd'|trans }}
+                    </th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                {% for project in projects %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
+                            {{ project.name }}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
+                            {{ project.address }}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
+                            {{ project.dateStart|date }}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
+                            {{ project.dateEnd|date }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="px-6 py-12 text-center text-sm text-gray-500">
+                            Aucun projet trouvé.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
 {% endblock %}

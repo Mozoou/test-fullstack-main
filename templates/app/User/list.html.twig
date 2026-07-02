@@ -1,22 +1,52 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <table>
-        <thead>
-            <tr>
-                <td>{{ 'entity.User.firstName'|trans }}</td>
-                <td>{{ 'entity.User.lastName'|trans }}</td>
-                <td>{{ 'entity.User.matricule'|trans }}</td>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
+<div class="mx-auto max-w-6xl px-6 py-10">
+
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold tracking-tight text-gray-900">
+            {{ 'entity.User.list'|trans({}, 'messages')|default('Utilisateurs') }}
+        </h1>
+    </div>
+
+    <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
                 <tr>
-                    <td>{{ user.firstName }}</td>
-                    <td>{{ user.lastName }}</td>
-                    <td>{{ user.matricule }}</td>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        {{ 'entity.User.firstName'|trans }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        {{ 'entity.User.lastName'|trans }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        {{ 'entity.User.matricule'|trans }}
+                    </th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                {% for user in users %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
+                            {{ user.firstName }}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
+                            {{ user.lastName }}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
+                            {{ user.matricule }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="px-6 py-12 text-center text-sm text-gray-500">
+                            Aucun utilisateur trouvé.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
 {% endblock %}

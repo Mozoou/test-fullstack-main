@@ -13,14 +13,24 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
     </head>
     <body>
-        <nav>
-            <ul>
-                <li><a href="{{ path('app_home') }}">Acceuil</a></li>
-                <li><a href="{{ path('app_Clocking_list') }}">Pointages</a></li>
-                <li><a href="{{ path('app_Project_list') }}">Chantiers</a></li>
-                <li><a href="{{ path('app_User_list') }}">Collaborateurs</a></li>
-            </ul>
-        </nav>
+        <header class="border-b border-gray-200 bg-white">
+            <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+                <a href="{{ path('app_home') }}" class="text-lg font-semibold tracking-tight">
+                    Kalitics
+                </a>
+                <div class="flex gap-6 text-sm font-medium text-gray-600">
+                    <a class="hover:text-gray-900" href="{{ path('app_home') }}">Acceuil</a>
+                    <a class="hover:text-gray-900" href="{{ path('app_Clocking_list') }}">Pointages</a>
+                    <a class="hover:text-gray-900" href="{{ path('app_Project_list') }}">Chantiers</a>
+                    <a class="hover:text-gray-900" href="{{ path('app_User_list') }}">Collaborateurs</a>
+                    {% if app.user %}
+                        <a class="hover:text-gray-900" href="{{ path('app_logout') }}">Déconnexion</a>
+                    {% else %}
+                        <a class="hover:text-gray-900" href="{{ path('app_login') }}">Connexion</a>
+                    {% endif %}
+                </div>
+            </nav>
+        </header>
         {% block body %}{% endblock %}
     </body>
 </html>

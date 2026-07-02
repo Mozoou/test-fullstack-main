@@ -1,31 +1,76 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div>
-        <a href="{{ path('app_Clocking_create') }}">Créer</a>
+<div class="mx-auto max-w-6xl px-6 py-10">
+
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold tracking-tight text-gray-900">
+            {{ 'entity.Clocking.list'|trans({}, 'messages')|default('Pointages') }}
+        </h1>
+        {% if app.user %}
+            <a href="{{ path('app_Clocking_create') }}"
+            class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500">
+                + Créer
+            </a>
+        {% endif %}
     </div>
-    <table>
-        <thead>
-            <tr>
-                <td>{{ 'entity.Clocking.date'|trans }}</td>
-                <td>{{ 'entity.Clocking.duration'|trans }}</td>
-                <td>{{ 'entity.Clocking.clockingProject'|trans }}</td>
-                <td>{{ 'entity.Clocking.clockingUser'|trans }}</td>
-                <td>Actions</td>
-            </tr>
-        </thead>
-        <tbody>
-            {% for clocking in clockings %}
+
+    <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
                 <tr>
-                    <td>{{ clocking.date|date }}</td>
-                    <td>{{ clocking.duration }}</td>
-                    <td>{{ clocking.clockingProject.name }}</td>
-                    <td>{{ clocking.clockingUser.lastName }} {{ clocking.clockingUser.firstName }}</td>
-                    <td>
-                        <a href="{{ path('app_Clocking_delete', {id: clocking.id}) }}">Supprimer</a>
-                    </td>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        {{ 'entity.Clocking.date'|trans }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        {{ 'entity.Clocking.duration'|trans }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        {{ 'entity.Clocking.clockingProject'|trans }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        {{ 'entity.Clocking.clockingUser'|trans }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Actions
+                    </th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                {% for clocking in clockings %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
+                            {{ clocking.date|date }}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
+                            {{ clocking.duration }}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
+                            {{ clocking.clockingProject.name }}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
+                            {{ clocking.clockingUser.lastName }} {{ clocking.clockingUser.firstName }}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4 text-right text-sm">
+                            {% if app.user %}
+                                <a href="{{ path('app_Clocking_delete', {id: clocking.id}) }}"
+                                class="font-medium text-red-600 hover:text-red-500"
+                                onclick="return confirm('Confirmer la suppression ?')">
+                                    Supprimer
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="px-6 py-12 text-center text-sm text-gray-500">
+                            Aucun pointage trouvé.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
 {% endblock %}

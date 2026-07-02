@@ -4,12 +4,16 @@ entity:
     clockingUser: "Collaborateur"
     date: "Date de fin"
     duration: "Durée"
+    list: "Liste des pointages"
+    create: "Créer un pointage"
   Project:
     address: "Adresse"
     dateEnd: "Date de clôture"
     dateStart: "Date d'ouverture"
     name: "Nom"
+    list: "Liste des chantiers"
   User:
     firstName: "Prénom"
     lastName: "Nom"
     matricule: "Matricule"
+    list: "Liste des collaborateurs"

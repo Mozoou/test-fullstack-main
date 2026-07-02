@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -9,8 +9,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class HomeController extends
-    AbstractController
+class HomeController extends AbstractController
 {
 
     /**
@@ -19,7 +18,7 @@ class HomeController extends
      * @return \Symfony\Component\HttpFoundation\Response
      */
     #[Route('/', name: 'app_home', methods: ['GET'])]
-    public function home(ParameterBagInterface $parameterBag) : Response
+    public function home(ParameterBagInterface $parameterBag): Response
     {
         $projectDir    = $parameterBag->get('kernel.project_dir');
         $readmeContent = file_get_contents("$projectDir/README.md");
