@@ -169,7 +169,6 @@ L'ancien formulaire unique (`CreateClockingType` + `templates/app/Clocking/creat
 - Accès restreint via l'attribut `#[IsGranted(...)]` directement sur les actions :
   - `createCollaborator` → `#[IsGranted('ROLE_USER')]`
   - `createManager` → `#[IsGranted('ROLE_MANAGER')]`
-- ⚠️ Point de vigilance identifié pendant l'analyse : `access_control` est vide dans `security.yaml` et la route de suppression d'un pointage (`app_Clocking_delete`, `ClockingItemController`) n'a pas d'`IsGranted`. Le lien "Supprimer" n'est affiché dans l'UI que si l'utilisateur est connecté, mais l'URL reste techniquement accessible sans authentification si elle est appelée directement. Non corrigé ici pour rester focalisé sur la problématique métier demandée par l'énoncé — voir [Pistes d'amélioration](#pistes-damélioration).
 
 ## Pages et routes
 
@@ -180,7 +179,7 @@ L'ancien formulaire unique (`CreateClockingType` + `templates/app/Clocking/creat
 | `app_Clocking_create` | `/clockings/clockings/create` | connecté | Redirige vers le bon formulaire selon le rôle |
 | `app_Clocking_create_collaborator` | `/clockings/clockings/create/collaborator` | `ROLE_USER` | Formulaire multi-chantiers |
 | `app_Clocking_create_manager` | `/clockings/clockings/create/manager` | `ROLE_MANAGER` | Formulaire multi-collaborateurs |
-| `app_Clocking_delete` | `/clockings/{id}/` | voir ⚠️ ci-dessus | Suppression d'un pointage |
+| `app_Clocking_delete` | `/clockings/{id}/` | `ROLE_MANAGER` | Suppression d'un pointage |
 | `app_Project_list` | `/projects/` | public | Liste des chantiers |
 | `app_User_list` | `/users/` | public | Liste des collaborateurs |
 | `app_login` / `app_logout` | `/login` / `/logout` | public | Authentification |
@@ -196,7 +195,6 @@ En pratique, il n'est jamais nécessaire de saisir ces URLs à la main : la navi
 
 ## Pistes d'amélioration
 
-- Protéger `app_Clocking_delete` avec un `#[IsGranted]` et passer l'action de suppression en méthode `POST`/`DELETE` plutôt qu'en `GET` (actuellement déclenchée par un simple lien).
 - Restreindre en `access_control` les listes (pointages, chantiers, collaborateurs) si elles ne doivent pas rester publiques.
 - Ajouter des tests fonctionnels (`tests/`) sur les deux parcours de création de pointage, notamment sur les cas limites de validation (durée > 10h, liste vide).
 - Envisager une entité "lot de pointage" (ex. `ClockingBatch`) si le besoin d'un historique par soumission (plutôt que par ligne) devient nécessaire.
