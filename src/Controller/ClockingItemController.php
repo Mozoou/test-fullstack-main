@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/clockings/{id}', requirements: ['id' => '\d+'])]
 class ClockingItemController extends
-    AbstractController
+AbstractController
 {
 
     /**
@@ -25,7 +25,8 @@ class ClockingItemController extends
     public function deleteClocking(
         EntityManagerInterface $entityManager,
         Clocking               $clocking,
-    ) : Response {
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_MANAGER');
         $entityManager->remove($clocking);
         $entityManager->flush();
 

@@ -52,7 +52,7 @@
                             {{ clocking.clockingUser.lastName }} {{ clocking.clockingUser.firstName }}
                         </td>
                         <td class="whitespace-nowrap px-6 py-4 text-right text-sm">
-                            {% if app.user %}
+                            {% if app.user and is_granted('ROLE_MANAGER') %}
                                 <a href="{{ path('app_Clocking_delete', {id: clocking.id}) }}"
                                 class="font-medium text-red-600 hover:text-red-500"
                                 onclick="return confirm('Confirmer la suppression ?')">
